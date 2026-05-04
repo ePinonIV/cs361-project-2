@@ -18,22 +18,49 @@ def benchmark_print(algo, graph, start):
         tracemalloc.start()
 
         start_time = time.perf_counter()
-        path = algo(graph, start)
+        distances, parents = algo(graph, start)
         end_time = time.perf_counter()
 
         i, peak_mem = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         
-        times.append(end_time - start_time)
+        times.append((end_time - start_time) * 1000)
         mem_usages.append(peak_mem)
     
     avg_time = sum(times) / 5
-    avg_mem = sum(mem_usages) / 5
+    avg_mem = (sum(mem_usages) / 5) / 1048576
 
     print("Benchmark for Graph " + graph.name + ":")
-    print("Path taken: " + str(path))
-    print("Average runtime = " + str(avg_time))
-    print("Average memory usage = " + str(avg_mem))
+    print(f"Vertices: {graph.V} | Edges: {graph.E}")
+    #print("Path taken: " + str(path))
+    print(f"Average runtime = {avg_time:.4f} ms")
+    print(f"Average memory usage = {avg_mem:.6f} MB")
+    
+    print("Shortest Paths:")
+    for i in range(graph.V):
+        new_path = []
+        pos = i
+
+        while pos is not None:
+            new_path.append(pos)
+            pos = parents.get(pos)
+        new_path = new_path[::-1]
+        path_labels = []
+
+        for node in new_path:
+            if graph.name in ["Sparse 1", "Dense 1"]:
+                path_labels.append(chr(node + 65))
+            elif graph.name in ["Sparse 2", "Dense 2", "Dense 3"]:
+                path_labels.append(str(node + 1))
+        
+        if graph.name in ["Sparse 1", "Dense 1"]:
+            start_node = chr(start + 65)
+            target_node = chr(i + 65)
+        elif graph.name in ["Sparse 2", "Dense 2", "Dense 3"]:
+            start_node = str(start + 1)
+            target_node = str(i + 1)
+
+        print(f"Start {start_node} -> Node {target_node}| Distance: {distances[i]} | Path: {path_labels} ")
     #return path, avg_time, avg_mem
 
 
