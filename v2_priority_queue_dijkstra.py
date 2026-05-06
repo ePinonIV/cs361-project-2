@@ -36,12 +36,12 @@ def dijkstra_pq(graph, start):
             continue
 
         # explore neighbors of current v
-        cur_neighbors = Graph.w_explore(u, graph.type)
+        cur_neighbors = graph.list[u]
 
         for v, w in cur_neighbors:
             new_dist = cur_dist + w
 
-            if new_dist < dist[v]
+            if new_dist < dist[v]:
                 dist[v] = new_dist
                 parent[v] = u
                 heapq.heappush(pq, (new_dist, v))
@@ -157,14 +157,14 @@ def main():
 
     print("Version 2: Priority Queue Dijkstra\n")
 
-    print("Adjancency List\n")
+    print("Priority Queue (Sparse Graphs)\n")
     for i, start in sparse_graphs:
-        benchmark_print(dijkstra_array_list, i, start)
+        benchmark_print(dijkstra_pq, i, start)
         print("------------------------------------------")
 
-    print("Adjancency Matrix\n")
+    print("Priority Queue (Dense Graphs)\n")
     for i, start in dense_graphs:
-        benchmark_print(dijkstra_array_matrix, i, start)
+        benchmark_print(dijkstra_pq, i, start)
         print("------------------------------------------")
 
 
