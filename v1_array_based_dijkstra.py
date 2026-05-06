@@ -7,7 +7,6 @@ import sys
 from graph_setup import (sparse1, sparse2, dense1, dense2, dense3, benchmark_print, char_map, int_map)
 
 
-
 def dijkstra_array_list(graph, start):
     V = graph.V
     dist = {}
@@ -98,6 +97,7 @@ def dijkstra_array_matrix(graph, start):
 
 
 # ----- run benchmarking -----
+
 def main():
 
     #graphs for testing
@@ -122,5 +122,7 @@ def main():
     for i, start in dense_graphs:
         benchmark_print(dijkstra_array_matrix, i, start)
         print("------------------------------------------")
+
+
 if __name__ == "__main__":
     main()

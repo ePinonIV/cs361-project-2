@@ -2,12 +2,9 @@
 # minimum distance vertex is selected using min-priority queue  
 # - expected time complexity: O((V + E) log(V) )
 
-
-#from graph_setup import *
 import sys
 import heapq
 from graph_setup import (sparse1, sparse2, dense1, dense2, dense3, benchmark_print, char_map, int_map)
-
 
 # ----- dijkstra's implementation -----
 
@@ -39,6 +36,7 @@ def dijkstra_pq(graph, start):
         for v, w in cur_neighbors:
             new_dist = cur_dist + w
 
+            # relaxation - check if new path is shorter
             if new_dist < dist[v]:
                 dist[v] = new_dist
                 parent[v] = u
@@ -46,9 +44,8 @@ def dijkstra_pq(graph, start):
 
     return dist, parent
 
-            
-
 # ----- run benchmarking -----
+
 def main():
 
     #graphs for testing

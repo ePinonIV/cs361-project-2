@@ -5,7 +5,7 @@
 import time
 import tracemalloc
 
-# -----  -----
+# ----- Miscellaneous Helpers & Function(s) -----
 char_map = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5}
 int_map = {'1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5, '7': 6, '8': 7, '9': 8}
 
@@ -32,7 +32,6 @@ def benchmark_print(algo, graph, start):
 
     print("Benchmark for Graph " + graph.name + ":")
     print(f"Vertices: {graph.V} | Edges: {graph.E}")
-    #print("Path taken: " + str(path))
     print(f"Average runtime = {avg_time:.4f} ms")
     print(f"Average memory usage = {avg_mem:.6f} MB")
     
@@ -61,7 +60,6 @@ def benchmark_print(algo, graph, start):
             target_node = str(i + 1)
 
         print(f"Start {start_node} -> Node {target_node}| Distance: {distances[i]} | Path: {path_labels} ")
-    #return path, avg_time, avg_mem
 
 
 # ----- Graph Class Implementation -----
@@ -98,30 +96,6 @@ class Graph:
             print(str(self.mat[i]))
         print("..............................\n")
         
-    def explore(self, v, type):
-        neighbors = []
-        if type == 'list':
-            neighbors.append(v)
-            neighbors.append(v+1)
-        elif type == 'matrix':
-            for i in range(self.V):
-                if self.mat[v][i] > -1:
-                    neighbors.append(i)
-        return neighbors
-
-    def w_explore(self, v, type):
-        neighbors = []
-        if type == 'list':
-            #neighbors.append(v)
-            #neighbors.append(v+1)
-            return self.list[v]
-        elif type == 'matrix':
-            for i in range(self.V):
-                if self.mat[v][i] > -1:
-                    neighbors.append((self.mat[v][i]))
-            return neighbors
-
-
 
 # ---------- Create graphs ----------
 
