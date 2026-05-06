@@ -109,6 +109,18 @@ class Graph:
                     neighbors.append(i)
         return neighbors
 
+    def w_explore(self, v, type):
+        neighbors = []
+        if type == 'list':
+            #neighbors.append(v)
+            #neighbors.append(v+1)
+            return self.list[v]
+        elif type == 'matrix':
+            for i in range(self.V):
+                if self.mat[v][i] > -1:
+                    neighbors.append((self.mat[v][i]))
+            return neighbors
+
 
 
 # ---------- Create graphs ----------
