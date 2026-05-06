@@ -3,9 +3,9 @@ Repository to hold code for CS361L Data Structures and Algorithms Project-2 abou
 
 ## How to run code
 
-These instructions assume this code will be ran in a Linux-based environment, such as WSL in Windows or MacOS, with Python3 installed.
+These instructions assume this code will be ran in a Linux-based environment, such as WSL in Windows or MacOS, and that Python3 is installed.
 
-Either clone the GitHub repository using HTTPS or download the code as a ZIP and extract to a directory. Then, ensuring `graph_setup.py` and the two implementations of the code, `v1_array_based_dijkstra.py` and `v1_priority_queue_dijkstra.py`, are in the same directory, run the code as follows.
+Either clone the GitHub repository using HTTPS or download the files individually or as a ZIP and extract to a directory. Then, ensuring `graph_setup.py` and the two implementations of the code, `v1_array_based_dijkstra.py` and `v2_priority_queue_dijkstra.py`, are in the same directory, run the code as follows.
 
 To run the Version 1 Array Based Implementation of Dijkstra's Algorithm:
 ```
