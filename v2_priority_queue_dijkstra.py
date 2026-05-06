@@ -5,10 +5,8 @@
 
 #from graph_setup import *
 import sys
-#import queue
 import heapq
-from graph_setup import (Graph, sparse1, sparse2, dense1, dense2, dense3, benchmark_print, char_map, int_map)
-    # add Graph to import?
+from graph_setup import (sparse1, sparse2, dense1, dense2, dense3, benchmark_print, char_map, int_map)
 
 
 # ----- dijkstra's implementation -----
@@ -16,15 +14,15 @@ from graph_setup import (Graph, sparse1, sparse2, dense1, dense2, dense3, benchm
 def dijkstra_pq(graph, start):
     V = graph.V
     pq = []
-
-    #dist = [sys.maxsize] * V
     dist = {}
     parent = {}
     
+    # initialize distances as infinity and no parents
     for i in range(V):
         dist[i] = sys.maxsize
         parent[i] = None
     
+    # init heap with start node
     dist[start] = 0
     heapq.heappush(pq, (0, start))
     
@@ -49,97 +47,6 @@ def dijkstra_pq(graph, start):
     return dist, parent
 
             
-
-
-
-def dijkstra_array_list(graph, start):
-    V = graph.V
-    dist = {}
-    parent = {}
-
-    #set all dist to infinity
-    for i in range(V):
-        dist[i] = sys.maxsize
-        parent[i] = None
-    
-    #start dist at 0
-    dist[start] = 0
-    visited = set()
-
-    #loop to find the shortest path
-    for _ in range(V):
-        min_dist = sys.maxsize
-        #unvisted node with closest distance
-        u = -1
-
-        #find unvisited vertex with min dist
-        for i in range(V):
-            if i not in visited and dist[i] < min_dist:
-                min_dist = dist[i]
-                u = i
-        
-        #stop if all unvisted vertice dist is inf
-        if u == -1:
-            break
-
-        visited.add(u)
-
-        #update the neighbors
-        for v, weight in graph.list[u]:
-            if v not in visited:
-                new_dist = dist[u] + weight
-                #update new shortest dist
-                if new_dist < dist[v]:
-                    dist[v] = new_dist
-                    parent[v] = u
-    
-    return dist, parent
-
-
-def dijkstra_array_matrix(graph, start):
-    V = graph.V
-    dist = {}
-    parent = {}
-
-    #set all dist to infinity
-    for i in range(V):
-        dist[i] = sys.maxsize
-        parent[i] = None
-    
-    #start dist at 0
-    dist[start] = 0
-    visited = set()
-
-    #loop to find the shortest path
-    for _ in range(V):
-        min_dist = sys.maxsize
-        #unvisted node with closest distance
-        u = -1
-
-        #find unvisited vertex with min dist
-        for i in range(V):
-            if i not in visited and dist[i] < min_dist:
-                min_dist = dist[i]
-                u = i
-        
-        #stop if all unvisted vertice dist is inf
-        if u == -1:
-            break
-
-        visited.add(u)
-
-        #update the neighbors
-        for v in range(V):
-            weigth = graph.mat[u][v]
-            #checks if edge exists and if vertex is unvisted
-            if weigth > -1 and v not in visited:
-                new_dist = dist[u] + weigth
-                #update new shortest dist
-                if new_dist < dist[v]:
-                    dist[v] = new_dist
-                    parent[v] = u
-    return dist, parent
-
 
 # ----- run benchmarking -----
 def main():
